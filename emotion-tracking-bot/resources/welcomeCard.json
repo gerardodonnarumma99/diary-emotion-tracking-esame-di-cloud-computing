@@ -1,0 +1,24 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+      {
+        "type": "TextBlock",
+        "spacing": "medium",
+        "size": "default",
+        "weight": "bolder",
+        "text": "Benvenuto in Emotion Tracking Bot",
+        "wrap": true,
+        "maxLines": 0
+      },
+      {
+        "type": "TextBlock",
+        "size": "medium",
+        "isSubtle": true,
+        "text": "Ora scegli cosa fare con il bot!",
+        "wrap": true,
+        "maxLines": 0
+      }
+    ]
+  }

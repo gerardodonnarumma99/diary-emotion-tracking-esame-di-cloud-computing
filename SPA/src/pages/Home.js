@@ -4,7 +4,7 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {
-    Avatar, Container, FormControl, Grid, IconButton, InputAdornment, InputLabel, Link, List,
+    Avatar, Button, Container, FormControl, Grid, IconButton, InputAdornment, InputLabel, Link, List,
     ListItem,
     ListSubheader, OutlinedInput, Paper, Typography, useTheme
 } from "@mui/material";
@@ -13,7 +13,8 @@ import { TextPlugin } from 'gsap/dist/TextPlugin';
 import { useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import welcomeImg from "../assets/welcome.jpg";
-import { snackbarAtom, usersAtom } from "../state/atom";
+import { snackbarAtom, themeAtom, usersAtom } from "../state/atom";
+import { themeDefault } from "../theme/constant";
 import UnauthenticatedPage from "./UnauthenticatedPage";
 
 const AuthenticatedContainer = () => {
@@ -23,6 +24,7 @@ const AuthenticatedContainer = () => {
     const elementUserText = useRef(null);
     const [snackbar, setSnackbar] = useRecoilState(snackbarAtom);
     const [showToken, setShowToken] = useState(null);
+    const [themeState, setThemeState] = useRecoilState(themeAtom);
 
     useEffect(() => {
         gsap.registerPlugin(TextPlugin);
@@ -65,6 +67,10 @@ const AuthenticatedContainer = () => {
         setShowToken((prevShowToken) => !prevShowToken)
     }
 
+    const handleResetTheme = () => {
+        setThemeState(themeDefault);
+    }
+
     return (
         <Container maxWidth="md" sx={{ marginTop: 5, marginBottom: 5 }}>
             <Paper 
@@ -105,28 +111,34 @@ const AuthenticatedContainer = () => {
                         alignItems="center"
                         spacing={2} 
                         style={{ marginBottom: 15 }} >
-                        {user && user.id && (
                             <>
-                            <Grid item xs={12} md={2}>
-                                <Avatar sx={{ bgcolor: theme.palette.secondary.main }} alt={user.name}>
-                                    {user.name.substring(0, 1)}
-                                </Avatar>
-                            </Grid>
-                            <Grid item xs={12} md={10}>
-                                <List>
-                                    <ListItem disablePadding>
-                                        <Typography>{`Name: ${user.name}`}</Typography>
-                                    </ListItem>
-                                    <ListItem disablePadding>
-                                        <Typography>{`Surname: ${user.surname}`}</Typography>
-                                    </ListItem>
-                                    <ListItem disablePadding>
-                                        <Typography>{`Email: ${user.email}`}</Typography>
-                                    </ListItem>
-                                </List>
-                            </Grid>
+                                <Grid item xs={12} md={2}>
+                                    <Avatar sx={{ bgcolor: theme.palette.secondary.main }} alt={user?.name || ""}>
+                                        {user?.name.substring(0, 1) || ""}
+                                    </Avatar>
+                                </Grid>
+                                <Grid item xs={12} md={10}>
+                                    <List>
+                                        <ListItem disablePadding>
+                                            <Typography>{`Name: ${user?.name || ""}`}</Typography>
+                                        </ListItem>
+                                        <ListItem disablePadding>
+                                            <Typography>{`Surname: ${user?.surname || ""}`}</Typography>
+                                        </ListItem>
+                                        <ListItem disablePadding>
+                                            <Typography>{`Email: ${user?.email || ""}`}</Typography>
+                                        </ListItem>
+                                    </List>
+                                </Grid>
+                                {themeState.primary !== themeDefault.primary && 
+                                    (<Grid item xs={12}>
+                                        <Button 
+                                            onClick={handleResetTheme}
+                                            style={{ float: "right" }} >
+                                                Reset Theme
+                                            </Button>
+                                    </Grid>)}
                             </>
-                        )}
                 </Grid>
             </Paper>
                 </Grid> 

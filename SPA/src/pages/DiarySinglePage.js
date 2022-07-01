@@ -7,6 +7,7 @@ import { ReactComponent as NormalIcon } from "../assets/normal.svg";
 import { ReactComponent as SadIcon } from "../assets/sad.svg";
 import { ReactComponent as SuperHappyIcon } from "../assets/super_happy.svg";
 import { ReactComponent as VerySadIcon } from "../assets/very_sad.svg";
+import ChipEmotion from "../components/ChartsComponent/ChipEmotion";
 import DiaryInput from "../components/DiaryComponent/DiaryInput";
 import { getDiaryById, updateDiaryPage } from "../request/diaryRequest";
 import { loaderAtom, themeAtom, usersAtom } from "../state/atom";
@@ -19,6 +20,9 @@ const DiarySinglePage = () => {
     const [page, setPage] = useState({})
     const [user, setUser] = useRecoilState(usersAtom);
     const confidenceScoreString = `Score Sentiment: ${page?.confidence_score?.positive || 0} (positive) ${page?.confidence_score?.neutral || 0} (neutral) ${page?.confidence_score?.negative || 0} (negative)`;
+    const sentimentPositive = page?.confidence_score?.positive || 0;
+    const sentimentNeutral = page?.confidence_score?.neutral || 0;
+    const sentimentNegative = page?.confidence_score?.negative || 0;
 
     useEffect(() => getPage(),[id]);
 
@@ -90,10 +94,13 @@ const DiarySinglePage = () => {
                 <Paper elevation={2} style={{ padding: 15 }}>
                     <Grid container spacing={2} style={{ marginBottom: 15 }}>
                         <Grid item md={2} xs={12}>
-                            <Typography>Sentiment: {getIcon()}</Typography>
+                            <Typography>Sentiment {getIcon()}</Typography>
                         </Grid>
-                        <Grid item md={6} xs={12}>
-                            <Typography>{confidenceScoreString}</Typography>
+                        <Grid item md={8} xs={12}>
+                            <ChipEmotion 
+                                positive={sentimentPositive} 
+                                neutral={sentimentNeutral} 
+                                negative={sentimentNegative} />
                         </Grid>
                     </Grid>
                     <DiaryInput

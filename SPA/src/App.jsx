@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useRecoilState } from "recoil";
 import { loginRequest } from "./authConfig";
 import ResponsiveAppBar from "./components/AppBar/ResponsiveAppBar";
+import ProtectRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { callMsGraph } from "./graph";
 import DiaryPage from "./pages/DiaryPage";
 import DiarySinglePage from "./pages/DiarySinglePage";
@@ -90,13 +91,25 @@ export default function App() {
                 <Route exact path="/" element={<Home />} />
             </Routes>
             <Routes>
-                <Route exact path="/diary" element={<DiaryPage />} />
+                <Route exact path="/diary" element={
+                    <ProtectRoute isLoggedIn={userData && userData.id} >
+                        <DiaryPage />
+                    </ProtectRoute>
+                } />
             </Routes>
             <Routes>
-                <Route path="/diary/:id" element={<DiarySinglePage />} />
+                <Route path="/diary/:id" element={
+                    <ProtectRoute isLoggedIn={userData && userData.id} >
+                        <DiarySinglePage />
+                    </ProtectRoute>
+                } />
             </Routes>
             <Routes>
-                <Route path="/emotion-tracking" element={<EmotionTrackingPage />} />
+                <Route path="/emotion-tracking" element={
+                    <ProtectRoute isLoggedIn={userData && userData.id} >
+                        <EmotionTrackingPage />
+                    </ProtectRoute>
+                } />
             </Routes>
         </BrowserRouter>
     );

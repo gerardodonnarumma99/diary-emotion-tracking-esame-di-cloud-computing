@@ -18,8 +18,7 @@ import { useLayoutEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { loginRequest } from '../../authConfig';
-import { themeAtom, usersAtom } from '../../state/atom';
-import { themeDefault } from '../../theme/constant';
+import { usersAtom } from '../../state/atom';
 import itemsMenu from './itemsMenu';
 
 const ResponsiveAppBar = () => {
@@ -27,7 +26,6 @@ const ResponsiveAppBar = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const { instance } = useMsal();
   const [user, setUser] = useRecoilState(usersAtom);
-  const [themeState, setThemeState] = useRecoilState(themeAtom);
   const navigate = useNavigate();
   const theme = useTheme();
   const [el, setEl] = useState(null);
@@ -80,11 +78,6 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  const handleResetTheme = () => {
-    
-    setThemeState(themeDefault);
-  }
-
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -93,7 +86,8 @@ const ResponsiveAppBar = () => {
             sx={{
                display: { xs: 'none', md: 'flex' }, 
                mr: 1,
-               filter: 'drop-shadow(0px 3px 3px #00000066)'
+               filter: 'drop-shadow(0px 3px 3px #00000066)',
+               color: 'white'
             }} />
           <Typography
             ref={setEl}
@@ -105,8 +99,8 @@ const ResponsiveAppBar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
-              textShadow: '2px 2px #00000066'
+              color: 'white',
+              textShadow: '2px 2px #00000066',
             }}
           >
             Emotion Tracking
@@ -157,7 +151,8 @@ const ResponsiveAppBar = () => {
             sx={{
               display: { xs: 'flex', md: 'none' }, 
               mr: 1,  
-              filter: 'drop-shadow(0px 3px 3px #00000066)' 
+              filter: 'drop-shadow(0px 3px 3px #00000066)',
+              color: 'white' 
             }} />
           <Typography
             variant="h5"
@@ -168,8 +163,8 @@ const ResponsiveAppBar = () => {
               flexGrow: 1,
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
-              textShadow: '2px 2px #00000066'
+              color: 'white',
+              textShadow: '2px 2px #00000066',
             }}
           >
             Emotion Tracking
@@ -227,9 +222,6 @@ const ResponsiveAppBar = () => {
                           <Typography textAlign="center">{user.email}</Typography>
                         </MenuItem>
                         <Divider />
-                        <MenuItem onClick={handleResetTheme}>
-                          <Typography textAlign="center">Reset Theme</Typography>
-                        </MenuItem>
                         <MenuItem onClick={() => handleSignOut("popup")}>
                           <Typography textAlign="center">Sign Out</Typography>
                         </MenuItem>

@@ -10,7 +10,6 @@ import { RecoilRoot, useRecoilState } from "recoil";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FullScreenLoader from "./components/FullScreenLoader/FullScreenLoader";
 import SnackbarCustom from "./components/SnackbarCustom/SnackbarCustom";
-import ResponsiveAppBar from "./components/AppBar/ResponsiveAppBar";
 import { themeAtom } from "./state/atom";
 import { CssBaseline } from "@mui/material";
 

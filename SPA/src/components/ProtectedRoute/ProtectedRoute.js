@@ -1,20 +1,12 @@
 import React from "react";
-import { Navigate, Routes, Route } from "react-router-dom";
-import { useIsAuthenticated } from "@azure/msal-react";
+import { Navigate } from "react-router-dom";
 
-function ProtectedRoute({ component: Component, ...restOfProps }) {
-  const isAuthenticated = useIsAuthenticated();
+const ProtectRoute = ({ isLoggedIn, children }) => {
+  if (!isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
 
-  return (
-    <Routes>
-      <Route
-        {...restOfProps}
-        render={(props) =>
-          isAuthenticated ? <Component {...props} /> : <Navigate to="/" />
-        }
-      />
-    </Routes>
-  );
-}
+  return children;
+};
 
-export default ProtectedRoute;
+export default ProtectRoute;

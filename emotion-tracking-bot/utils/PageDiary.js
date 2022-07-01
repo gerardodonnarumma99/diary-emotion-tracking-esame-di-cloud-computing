@@ -48,7 +48,7 @@ class ConfidenceScore {
     }
 
     toString() {
-        return `*positivo* 😄 ${this.positive}, *neutro* 😐 ${this.neutral}, *negativo* 😔 ${this.negative}`;
+        return `😄 ${this.positive} - 😐 ${this.neutral} - 😔 ${this.negative}`;
     }
 }
 

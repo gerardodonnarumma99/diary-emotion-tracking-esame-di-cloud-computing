@@ -123,20 +123,16 @@ class MainDialog extends ComponentDialog {
         var cardOptions;
         cardOptions = [
             {
-                value: 'test',
-                synonyms: ['test', '/test']
-            },
-            {
                 value: 'Aggiungi pagina',
-                synonyms: ['addPage', '/addPage']
+                synonyms: ['addPage', '/add_page']
             },
             {
                 value: 'Visualizza tutte le pagine',
-                synonyms: ['getAllPage', '/getAllPage']
+                synonyms: ['getAllPage', '/get_all_page']
             },
             {
                 value: 'Elimina una pagina',
-                synonyms: ['deletePage', '/deletePage']
+                synonyms: ['deletePage', '/delete_page']
             }
         ];
         

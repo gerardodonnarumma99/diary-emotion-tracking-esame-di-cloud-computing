@@ -66,10 +66,10 @@ const DiaryInput = ({ initialValue = "", titleLabel = "", titleButtonSave = "", 
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={2}>
+            <Grid item xs={2} >
                 <Typography>Record Audio:</Typography>
             </Grid>
-            <Grid item xs={10} style={{ marginTop: "-0.7 em" }}>
+            <Grid item xs={10} style={{ marginTop: "-10px", marginLeft: "-25px" }} >
                 <RecorderComponent handleSaveAudio={handleSaveAudio} handleSetDisabled={(loading) => setLoadingAudio(loading)}/>
             </Grid>
             <Grid item xs={12}>
@@ -90,9 +90,9 @@ const DiaryInput = ({ initialValue = "", titleLabel = "", titleButtonSave = "", 
             <Grid item xs={12}>
                 <Button 
                     variant="contained" 
-                    color="secondary" 
                     className={classes.buttonInsertPage}
-                    onClick={saveText} >
+                    onClick={saveText} 
+                    style={{ color: "white" }}>
                     {titleButtonSave}
                 </Button>
             </Grid>

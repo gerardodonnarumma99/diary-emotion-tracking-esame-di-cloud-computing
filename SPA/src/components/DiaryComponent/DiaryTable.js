@@ -89,8 +89,13 @@ const DiaryTable = () => {
       filter: true,
       sort: true,
       sortDirection: 'desc',
-      customBodyRender: (value, tableMeta, updateValue) => (moment(value).isValid() ?
-        moment(value).format("DD/MM/YYYY HH:mm:ss") : "")
+      customBodyRender: (value, tableMeta, updateValue) => {
+        if(value && moment(value).isValid()) {
+          return moment(value).format("DD/MM/YYYY HH:mm:ss");
+        }
+        
+        return "";
+      }
      }
     },
     {

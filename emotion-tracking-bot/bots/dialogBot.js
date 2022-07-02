@@ -24,7 +24,6 @@ class DialogBot extends ActivityHandler {
             if (context.activity.text === '/start') {
                 const welcomeCard = CardFactory.adaptiveCard(WelcomeCard);
                 await context.sendActivity({ attachments: [welcomeCard] });
-                await this.dialog.run(context, this.dialogState);
             } else {
                 await this.dialog.run(context, this.dialogState);
             }

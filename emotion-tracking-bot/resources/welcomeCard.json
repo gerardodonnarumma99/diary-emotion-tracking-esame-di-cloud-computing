@@ -16,7 +16,7 @@
         "type": "TextBlock",
         "size": "medium",
         "isSubtle": true,
-        "text": "Ora scegli cosa fare con il bot!",
+        "text": "Scrivi qualcosa per iniziare ad utilizzare il Bot!",
         "wrap": true,
         "maxLines": 0
       }

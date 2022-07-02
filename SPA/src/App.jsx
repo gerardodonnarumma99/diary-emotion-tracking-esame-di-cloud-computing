@@ -43,13 +43,16 @@ export default function App() {
     
             const userMsGraph = await callMsGraph(response.accessToken);
             const userData = await getUserById(userMsGraph.id);
+            console.log('userData', userData)
             
             if(!userData) {
-                const userDataSaved = await saveUser(userMsGraph);
-                setUserData(userDataSaved);
+                await saveUser(userMsGraph);
+                const user = await getUserById(userMsGraph.id);
+                setUserData(user);
+            } else {
+                setUserData(userData);
             }
-    
-            setUserData(userData);
+
         } catch(e) {
             console.log(e);
             handleSignOut("redirect");

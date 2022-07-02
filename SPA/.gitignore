@@ -42,6 +42,9 @@ node_modules/
 jspm_packages/
 AppCreationScripts/
 
+#Build directory
+build/
+
 # TypeScript v1 declaration files
 typings/
 

@@ -85,9 +85,11 @@ class DeleteDiaryPageDialog extends ComponentDialog {
             } catch(error) {
                 await step.context.sendActivity(`Errore da parte del server: ${error.message}`);
             } finally {
+                await step.context.sendActivity(`Scrivi qualcosa per continuare ad utilizzare il Bot.`);
                 return await step.endDialog(step.result);
             }
         } else if(result.toLowerCase() === 'no') {
+            await step.context.sendActivity(`Scrivi qualcosa per continuare ad utilizzare il Bot.`);
             return await step.endDialog(step.result);
         }
     }

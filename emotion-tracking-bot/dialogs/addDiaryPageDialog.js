@@ -34,7 +34,6 @@ class AddDiaryPageDialog extends ComponentDialog {
         this.addDialog(new WaterfallDialog(WATERFALL_DIALOG, [
             this.main.bind(this),
             this.switchQuestionStep.bind(this),
-            //this.writeTextPage.bind(this),
             this.confirmAddPageStep.bind(this),
             this.addPage.bind(this)
         ]));
@@ -88,14 +87,6 @@ class AddDiaryPageDialog extends ComponentDialog {
             return await step.prompt(ATTACHMENT_PROMPT, "Invia l'immagine.")
         }
     }
-
-    /*async writeTextPage(step) {
-        const promptOptions = { 
-            prompt: 'Scrivi una pagina di diario', 
-            retryPrompt: "Il testo deve contenere almeno 3 caratteri" 
-        };
-        return await step.prompt(ADD_PAGE_PROMPT, promptOptions);
-    }*/
 
     async addPagePromptValidator(promptContext) {
         const text = promptContext.recognized.value;
@@ -199,6 +190,8 @@ class AddDiaryPageDialog extends ComponentDialog {
             await step.context.sendActivity('La pagina è stata aggiunta con successo!');
         } catch(e) {
             await step.context.sendActivity(`Errore da parte del server!`);
+        } finally {
+            await step.context.sendActivity(`Scrivi qualcosa per continuare ad utilizzare il Bot.`);
         }
 
         return await step.endDialog(step.result);

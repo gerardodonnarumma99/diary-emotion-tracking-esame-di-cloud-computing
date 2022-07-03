@@ -1,0 +1,10 @@
+{ 
+  "IsEncrypted": false, 
+  "Values": { 
+    "CosmosConnectionString": "",
+    "COSMODB_ENDPOINT": "",
+    "COSMODB_KEY": "",
+    "SECRET_TELEGRAM_CODE": "",
+    "TELEGRAM_BOT_TOKEN": ""
+  } 
+}

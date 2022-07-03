@@ -29,7 +29,9 @@ export default function App() {
     }, [isAuthenticated])
 
     useEffect(() => {
-        getDiaryPages()
+        if(userData && userData.id) {
+            getDiaryPages()
+        }
     }, [userData])
 
     const getProfilDataAndSaveUser = async () => {

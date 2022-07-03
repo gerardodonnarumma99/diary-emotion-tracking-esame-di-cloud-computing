@@ -184,7 +184,7 @@ const ResponsiveAppBar = () => {
                     ))}
             </AuthenticatedTemplate>
             <UnauthenticatedTemplate>
-                  <MenuItem key={"signin"} onClick={() => handleSignIn("popup")}>Sign In</MenuItem>
+                  <MenuItem key={"signin"} onClick={() => handleSignIn("redirect")}>Sign In</MenuItem>
             </UnauthenticatedTemplate>
           </Box>
 
@@ -222,7 +222,7 @@ const ResponsiveAppBar = () => {
                           <Typography textAlign="center">{user.email}</Typography>
                         </MenuItem>
                         <Divider />
-                        <MenuItem onClick={() => handleSignOut("popup")}>
+                        <MenuItem onClick={() => handleSignOut("redirect")}>
                           <Typography textAlign="center">Sign Out</Typography>
                         </MenuItem>
                     </Menu>

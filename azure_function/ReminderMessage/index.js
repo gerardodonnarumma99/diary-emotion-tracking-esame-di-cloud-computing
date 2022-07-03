@@ -57,17 +57,10 @@ module.exports = async function (context, myTimer) {
                 sendMessage = !pageDiaryExist;
             }
 
-            context.log(`Send Message: ${sendMessage}`)
-            context.log(`user.activeTelegramAccount: ${user.activeTelegramAccount}`)
-            context.log(`user.chatIdTelegram: ${user.chatIdTelegram}`)
-            context.log(`TOKEN: ${TELEGRAM_BOT_TOKEN}`)
-
             if(sendMessage && user.activeTelegramAccount && user.chatIdTelegram) {
-                context.log(`Ci sto`)
-                const message = `Ciao *${user.name}*, il tuo diario è triste! 
+                const message = `Ciao ${user.name}, il tuo diario è triste! 
                     \nOggi non hai scritto nulla, ma puoi ancora rimediare. 
-                    \nCorri subito a raccontare le tue giornate al *Diary Emotion Tracking* e lui solamente per te,
-                    analizzarà i tuoi sentimenti, così potrai tenerne traccia e potrai migliorare la qualità della tua vita!`;
+                    \nCorri subito a raccontare le tue giornate al Diary Emotion Tracking e lui solamente per te, analizzarà i tuoi sentimenti, così potrai tenerne traccia e potrai migliorare la qualità della tua vita!`;
 
                 const urlTelegram = "https://api.telegram.org/bot"+TELEGRAM_BOT_TOKEN+"/sendMessage";
 
@@ -77,12 +70,9 @@ module.exports = async function (context, myTimer) {
                         text: message
                     }
                 }));
-                context.log(`URL Telegram: ${urlTelegram}`);
             }
-            //https://api.telegram.org/bot5227519048:AAGF4pQDGEFUglwq9Qw3So1KqBu3bQw_r_8/sendMessage?chat_id=813343256&text=ProvaGerry
         }
 
-            promises.push(axios.get("https://api.telegram.org/bot5227519048:AAGF4pQDGEFUglwq9Qw3So1KqBu3bQw_r_8/sendMessage?chat_id=813343256&text=Mammt2"));
             axios.all(promises)
                 .then(axios.spread((res) => context.log(`[RESPONSE API TELEGRAM]: ${res}`)));
     } catch(error) {

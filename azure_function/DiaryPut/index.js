@@ -7,15 +7,6 @@ const clientDB = new CosmosClient({ endpoint, key });
 module.exports = async function (context, req) {
     const { id, text, sentiment, confidenceScore, userId } = req.body;
 
-    /*if(!id) {
-        context.res = {
-            status: 400, 
-            body: "The id is required!"
-        };
-
-        context.done();
-    }*/
-
     const diaryUpsert = {
         id: id,
         text: text,
